@@ -1,0 +1,26 @@
+function calculate() {
+	// Get input values
+	const wakeUpTime = document.getElementById("wake-up-time").valueAsDate;
+	const leaveTime = document.getElementById("leave-time").valueAsDate;
+	const startDate = new Date(document.getElementById("start-date").value);
+
+	// Calculate times
+	const workHours = 8;
+	const commuteTime = 1;
+	const hairWashFrequency = 14;
+	const tidyFrequency = 2;
+	const laundryFrequency = 2;
+	const cleaningDay = "Saturday";
+	const mealPlanFrequency = 1;
+	const selfCareTasks = ["Shower", "Skin Care Routine"];
+
+	let currentDate = new Date(startDate);
+	let schedule = "";
+
+	while (currentDate.getDay() < 5) { // Only calculate Mon-Thur
+		const startTime = new Date(currentDate);
+		startTime.setHours(wakeUpTime.getHours(), wakeUpTime.getMinutes());
+		const endTime = new Date(startTime);
+		endTime.setMinutes(endTime.getMinutes() + 30); // Add 30 minutes for getting ready
+		const commuteStartTime = new Date(endTime);
+		
